@@ -170,9 +170,10 @@ def main():
         stock_phrases = json_handler.json_load(f"json/stock_{current_place}.json")
         pictures_list = []
         # Чтение абсолютных путей изображений
-        for dirpath, dirnames, filenames in os.walk(f"{os.getcwd()}/pictures/{current_place}/"):
+        for dirpath, dirnames, filenames in os.walk(f"{os.getcwd()}/pictures/{current_place}/", ):
             for filename in filenames:
                 pictures_list.append(os.path.join(dirpath, filename))
+                pictures_list.sort()
         # Отображение акций
         for i in range(len(stock_phrases)):
             bot.send_photo(current_user_id, open(pictures_list[i], 'rb'), stock_phrases[i])
